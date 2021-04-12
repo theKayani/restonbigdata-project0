@@ -4,7 +4,8 @@ import com.hk.json.Json
 import com.hk.json.JsonWriter
 import java.io.File
 
-object Commands {
+object Commands
+{
   lazy val commands: Map[String, String => Any] = {
     Map(
       ("help", (args) => {
