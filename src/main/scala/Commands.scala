@@ -40,7 +40,7 @@ object Commands
         }
         else
         {
-          println("// TODO 'give' command")
+          println("// TODO: 'give' command")
         }
       }),
       ("import", (args) => {
@@ -58,7 +58,7 @@ object Commands
         }
         else
         {
-          println("// TODO 'import' command")
+          println("// TODO: 'import' command")
         }
       }),
       ("test-json", (args) => {
