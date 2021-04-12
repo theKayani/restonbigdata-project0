@@ -19,5 +19,43 @@ This Scala command line application will take numbers and their textual equivale
   give spanish 100
   ```
   should look like `cien`
+- The `import` command is used to pull data from a `json` file and insert all the rows/records extracted into the database...
 
+  This is what the `json` file should look like
+  ```json
+  {
+      "[language]": {
+          "[number]": "[word]"
+      },
+      ...
+  }
+  ```
+  so as an example...
+  ```json
+  {
+      "english": {
+          "1": "one",
+          "2": "two",
+          "3": "three",
+          "4": "four",
+          "5": "five",
+          "6": "six",
+          "7": "seven",
+          "8": "eight",
+          "9": "nine"
+      },
+      "spanish": {
+          "10": "diez",
+          "20": "veinte",
+          "30": "treinta",
+          "40": "cuarenta",
+          "50": "cinquenta",
+          "60": "sesenta",
+          "70": "setenta",
+          "80": "ochenta",
+          "90": "noventa"
+      }
+  }
+  ```
+- The `help` command returns a list of available commands to run. This can be very useful!
 _to be continued..._

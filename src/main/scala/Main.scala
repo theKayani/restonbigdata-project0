@@ -14,6 +14,7 @@ import scala.collection.mutable.Queue
 
 object Main
 {
+  var running = true
   val cmdPattern: Regex = "([\\w-]+)\\s*(.*)".r
 
   def main(args: Array[String]): Unit = {
@@ -29,13 +30,12 @@ object Main
 
     // Test commands by adding them to the queue
     var cmds = new Queue[String]()
-    cmds.enqueue("help java")
-    cmds.enqueue("test-json")
-    cmds.enqueue("exit")
+    // cmds.enqueue("help give")
+    // cmds.enqueue("help help")
+    // cmds.enqueue("exit")
     // Commands in the queue will execute before control is passed
     // unless exit is called.
 
-    var running = true
     while(running)
     {
       var line: String = null
