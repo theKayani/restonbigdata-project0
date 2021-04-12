@@ -3,6 +3,9 @@ import scala.collection.mutable.Map
 import com.hk.json.Json
 import com.hk.json.JsonWriter
 import java.io.File
+import com.hk.json.JsonFormatException
+import com.hk.json.JsonObject
+import com.hk.json.JsonValue
 
 object Commands
 {
@@ -58,7 +61,32 @@ object Commands
         }
         else
         {
-          println("// TODO: 'import' command")
+          var f: File = new File(args)
+
+          if(f.exists() && f.isFile() && f.canRead())
+          {
+            println("// TODO: 'import' command")
+            try
+            {
+              var obj: JsonValue = Json.read(f)
+
+              if(obj.isObject())
+                attemptImport(obj.getObject())
+              else
+                println("JSON file should be a JSON object")
+            } catch {
+              case e: JsonFormatException => {
+                println("This file isn't proper JSON format")
+              }
+              case e: Exception => {
+                println(e.getLocalizedMessage())
+              }
+            }
+          }
+          else
+          {
+            println("File not found or cannot be read")
+          }
         }
       }),
       ("test-json", (args) => {
@@ -69,20 +97,30 @@ object Commands
         }
         else
         {
-          var f: File = new File(args)
+          try
+          {
+            var f: File = new File(args)
 
-          if(!f.exists() || !f.isFile() || !f.canRead())
-            f = new File("test.json")
+            if(!f.exists() || !f.isFile() || !f.canRead())
+              f = new File("test.json")
 
-          var sb = new StringBuilder()
-          var writer: JsonWriter = Json.writer(System.out)
-          writer.setPrettyPrint()
-          writer.unsetSlashEscape()
+            var writer: JsonWriter = Json.writer(System.out)
+            writer.setPrettyPrint()
+            writer.unsetSlashEscape()
 
-          writer.put(Json.read(f))
-          println()
+            writer.put(Json.read(f))
+            println()
+          } catch {
+            case e: JsonFormatException => {
+              println("This file isn't proper JSON format")
+            }
+          }
         }
       })
     )
+  }
+
+  private def attemptImport(obj: JsonObject): Unit = {
+
   }
 }
